@@ -41,15 +41,7 @@ namespace any_chart_timeline_mvc.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult IndexPost(List<DataRaw> data)
-        {
-            var result = new TimeDataResult(data);
-
-            var serializerSettings = new JsonSerializerSettings();
-            serializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            ViewBag.Data = JsonConvert.SerializeObject(result, serializerSettings);
-
+        public IActionResult Timeline(){
             return View();
         }
     }

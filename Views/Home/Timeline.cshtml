@@ -1,0 +1,76 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="container"></div>
+
+@section styles {
+<style>
+    #container {
+        height: 300px;
+    }
+</style>
+}
+
+@section scripts {
+<script src="~/js/anychart-core.min.js"></script>
+<script src="~/js/anychart-timeline.min.js"></script>
+<script type="text/javascript">anychart.onDocumentReady(function () {
+
+        // create data
+
+        var rangeData1 = [
+            ["Task 1", Date.UTC(2004, 0, 4), Date.UTC(2004, 7, 1)],
+            ["Task 2", Date.UTC(2004, 7, 1), Date.UTC(2005, 8, 10)]
+        ];
+
+        var rangeData2 = [
+            ["New Task 1", Date.UTC(2005, 10, 1), Date.UTC(2006, 5, 1)],
+            ["New Task 2", Date.UTC(2006, 5, 15), Date.UTC(2006, 11, 1)]
+        ];
+
+        var momentData1 = [
+            [Date.UTC(2004, 2, 21), "Meeting 1"],
+            [Date.UTC(2005, 3, 19), "Meeting 2"],
+            [Date.UTC(2006, 1, 1), "Meeting 3"]
+        ];
+
+        var momentData2 = [
+            [Date.UTC(2004, 5, 12), "Training 1"],
+            [Date.UTC(2005, 5, 1), "Training 2"],
+            [Date.UTC(2006, 1, 26), "Training 3"]
+        ];
+
+        // create a chart
+        var chart = anychart.timeline();
+
+        // prevent zooming the chart with the mouse wheel
+        chart.interactivity().zoomOnMouseWheel(false);
+
+        // create the first range series, set the data and name
+        var rangeSeries1 = chart.range(rangeData1);
+        rangeSeries1.name("Tasks");
+
+        // create the second range series, set the data and name
+        var rangeSeries2 = chart.range(rangeData2);
+        rangeSeries2.name("New Tasks");
+
+        // create the first moment series, set the data and name
+        var momentSeries1 = chart.moment(momentData1);
+        momentSeries1.name("Meetings");
+
+        // create the second moment series, set the data and name
+        var momentSeries2 = chart.moment(momentData2);
+        momentSeries2.name("Trainings");
+
+        // set the chart title
+        chart.title("Timeline Chart: Basic Sample");
+
+        // set the container id
+        chart.container("container");
+
+        // initiate drawing the chart  
+        chart.draw();
+    });
+</script>
+}
